@@ -34,11 +34,21 @@ py –m venv venv
 . venv\scripts\activate
 ```
 
-3. Install the extensions 
+3. Install the extensions/frameworks/etc
 ```
 py -m pip install Django==4.0.4
 ```
 You will also need to download Django, please refer to this site [here](https://www.djangoproject.com/download/). (It might say that you have Django 4.0.4 version is unavailable, in that case please just donwload the recent version of Django.)
+
+4. Once you've installed everything, you are ready to run the page. Write this in the command line to start up the webapp:
+
+```
+cd mysite
+py ./manage.py runserver 
+```
+Once that runs successfully, click on the http link provided in the terminal while holding command + shift.
+
+5. If you want to stop the webpage server, push <b>CONTROL-C</b>:
 
 6.  If you're running your virtual environment, deactivate the virtual environment by typing:
 ```
@@ -65,12 +75,22 @@ python3 -m venv <name of environment>
 source <name of environment>/bin/activate
 ```
 
-3. Once you've entered your virtualenv, do the following in the command line 
+3. Once you've entered your virtualenv, do the following in the command line to install the extensions/frameworks/etc:
 
 ```
 python3 -m pip install Django==4.0.4
 ```
 You will also need to download Django, please refer to this site [here](https://www.djangoproject.com/download/). (It might say that you have Django 4.0.4 version is unavailable, in that case please just donwload the recent version of Django.)
+
+4. Once you've installed everything, you are ready to run the page. Write this in the command line to start up the webapp:
+
+```
+cd mysite
+python3 ./manage.py runserver 
+```
+Once that runs successfully, click on the http link provided in the terminal while holding command + shift.
+
+5. If you want to stop the webpage server, push <b>CONTROL-C</b>:
 
 6.  If you're running your virtual environment, deactivate the virtual environment by typing:
 ```
