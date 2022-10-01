@@ -1,7 +1,16 @@
+:root {
+  --UMBC-yellow:#fdb515;
+  --UMBC-white: white;
+}
+
 /* Show it is fixed to the top */
 body {
   min-height: 75rem;
-  padding-top: 4.5rem;
+  padding-top: 6rem;
+}
+
+.container{
+
 }
 
 .bd-placeholder-img {
@@ -53,4 +62,20 @@ body {
   text-align: center;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
+}
+
+.btn{
+  background-color: var(--UMBC-yellow);
+  color: black;
+  font-weight: 400;
+  text-decoration: none;
+  border-width: 0;
+}
+
+.btn:hover{
+  background-color: var(--UMBC-white);
+  color: black;
+  font-weight: 400;
+  text-decoration: none;
+  border-width: 0;
 }
