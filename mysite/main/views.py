@@ -19,11 +19,11 @@ class Room:
         if self.availIn > 0:
             tmp = convertTime(h1, m1)
             s = tmp[0:2] + ":" + tmp[2:]
-            return "Room " + self.roomNum + " available in: " + s
+            return "Room " + self.roomNum + " available in: " + s + "hr"
         else:
             tmp = convertTime(h2, m2)
             s = tmp[0:2] + ':' + tmp[2:]
-            return "Room " + self.roomNum + " available until: " + s
+            return "Room " + self.roomNum + " available for: " + s + "hr"
 
 def convertTime(h, m):
     print("ConvertTime executed")
@@ -94,6 +94,9 @@ def index(response):
         availIn, availUntil = -1, -1
         if indx & 1:
             availIn = allRooms[roomNum][indx] - curHour
+            h, m = availIn // 60, availIn % 60
+            availIn = int(convertTime(h,m))
+
             
         else:
             #Assume classrooms are available until 10pm only
@@ -101,6 +104,8 @@ def index(response):
                 availUntil = 2200 - curHour
             else:
                 availUntil = allRooms[roomNum][indx] - curHour
+            h, m = availUntil // 60, availUntil % 60
+            availUntil = int(convertTime(h,m))
 
         curRoom = Room(roomNum, availUntil, availIn)
         #roomsObj.append(curRoom)
