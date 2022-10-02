@@ -112,5 +112,12 @@ body {
 
 .status_btn_green{
   background-color: green;
-  display:inline";
+  display:inline;
+  height:1rem;
+}
+
+.status_btn_red{
+  background-color: red;
+  display:inline;
+  height:1rem;
 }
