@@ -36,13 +36,11 @@ py –m venv venv
 
 3. Install the extensions/frameworks/etc
 ```
-py -m pip install Django==4.0.4
-py -mpip install Django==4.1.1
-py -mpip install selenium==4.5.0
-py -mpip install webdriver-manager==3.8.3
+py -mpip install Django
+py -mpip install selenium
+py -mpip install webdriver-manager
 py -mpip install twilio
 ```
-You will also need to download Django, please refer to this site [here](https://www.djangoproject.com/download/). (It might say that you have Django 4.0.4 version is unavailable, in that case please just donwload the recent version of Django.)
 
 4. Once you've installed everything, you are ready to run the page. Write this in the command line to start up the webapp:
 
@@ -82,12 +80,11 @@ source <name of environment>/bin/activate
 3. Once you've entered your virtualenv, do the following in the command line to install the extensions/frameworks/etc:
 
 ```
-python3 -m pip install Django==4.1.1
-python3 -m pip install selenium==4.5.0
-python3 -m pip install webdriver-manager==3.8.3
+python3 -m pip install Django
+python3 -m pip install selenium
+python3 -m pip install webdriver-manager
 python3 -m pip install twilio
 ```
-You will also need to download Django, please refer to this site [here](https://www.djangoproject.com/download/). (It might say that you have Django 4.0.4 version is unavailable, in that case please just donwload the recent version of Django.)
 
 4. Once you've installed everything, you are ready to run the page. Write this in the command line to start up the webapp:
 

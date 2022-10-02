@@ -17,6 +17,7 @@
       <div class="container">
       
         <a class="d-flex" style="max-width:10rem; min-wdith:2rem; max-height: 3rem; margin-right:1rem;" href="#"><img class="img-fluid" alt="Responsive image" src="static/UMBC-primary-logo-CMYK-on-black.png"</a>
+        
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -26,13 +27,16 @@
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="https://umbc.edu/about/visit/directions/">Map</a>
             </li>
+            <!--
             <li class="nav-item">
               <a class="nav-link disabled">Disabled</a>
             </li>
+            -->
           </ul>
         </div>
+      
       </div>
     </nav>
     <main class="container">
@@ -50,11 +54,9 @@
     <!-- TEXT (DATE AND UPDATE TIME)-->
     <div class="container" style="margin-bottom:2rem;">
       <!-- DATE (change based on current date)-->
-      <h1>October 1st, 2022</h1>
-      <h3 id="output"></h3>
-      <h3 id="day_output"></h3>
+      <h1 id ="date_output"></h1>
+      <p id="output"></p>
       <!-- last update text -->
-      <p><i>Last updated at 10:45</i></p>
     </div>
 
       <!-- ACCORDION / DROPDOWN -->
@@ -126,9 +128,11 @@
     </main>
     <script>
           var today = new Date();
-          var date = time.getFullYear()+'-'+(time.getMonth()+1)+'-'+time.getDate();
+          //var date_numberformat = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+          var month = today.getMonth();
           var day = today.getDay();
           var daylist = ["Sunday","Monday","Tuesday","Wednesday ","Thursday","Friday","Saturday"];
+          var monthlist = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
           console.log("Today is : " + daylist[day] + ".");
           var hour = today.getHours();
           var minute = today.getMinutes();
@@ -161,10 +165,10 @@
           prepand=' AM';
           } 
           } 
-          const day_time = "Today is : " + daylist[day] + ". " + today + " - ";
+          const day_time = daylist[day] + ". " + monthlist[month] + " " + day + ", " + today.getFullYear();
           const time = "Current Time : "+hour  + ":" + minute + " " + prepand;
           document.getElementById('output').innerHTML = time;
-          document.getElementById('day_output').innerHTML = day_time;
+          document.getElementById('date_output').innerHTML = day_time;
      </script>
     <script src="static/dist/js/bootstrap.bundle.min.js"></script>   
   </body>
