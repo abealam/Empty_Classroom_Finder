@@ -51,6 +51,8 @@
     <div class="container" style="margin-bottom:2rem;">
       <!-- DATE (change based on current date)-->
       <h1>October 1st, 2022</h1>
+      <h3 id="output"></h3>
+      <h3 id="day_output"></h3>
       <!-- last update text -->
       <p><i>Last updated at 10:45</i></p>
     </div>
@@ -122,6 +124,48 @@
         </footer>
       </div>
     </main>
+    <script>
+          var today = new Date();
+          var date = time.getFullYear()+'-'+(time.getMonth()+1)+'-'+time.getDate();
+          var day = today.getDay();
+          var daylist = ["Sunday","Monday","Tuesday","Wednesday ","Thursday","Friday","Saturday"];
+          console.log("Today is : " + daylist[day] + ".");
+          var hour = today.getHours();
+          var minute = today.getMinutes();
+          var second = today.getSeconds();
+          var prepand = (hour >= 12)? " PM ":" AM ";
+          hour = (hour >= 12)? hour - 12: hour;
+          if (hour===0 && prepand===' PM ') 
+          { 
+          if (minute===0 && second===0)
+          { 
+          hour=12;
+          prepand=' Noon';
+          } 
+          else
+          { 
+          hour=12;
+          prepand=' PM';
+          } 
+          } 
+          if (hour===0 && prepand===' AM ') 
+          { 
+          if (minute===0 && second===0)
+          { 
+          hour=12;
+          prepand=' Midnight';
+          } 
+          else
+          { 
+          hour=12;
+          prepand=' AM';
+          } 
+          } 
+          const day_time = "Today is : " + daylist[day] + ". " + today + " - ";
+          const time = "Current Time : "+hour  + ":" + minute + " " + prepand;
+          document.getElementById('output').innerHTML = time;
+          document.getElementById('day_output').innerHTML = day_time;
+     </script>
     <script src="static/dist/js/bootstrap.bundle.min.js"></script>   
   </body>
 </html>
