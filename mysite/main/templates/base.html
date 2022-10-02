@@ -70,7 +70,11 @@
     {% for building,value in extraContext.items %}
       <p>{{building}}</p>
       {% for roomNum in value %}
-        <p>{{roomNum}}</p>
+        {% if roomNum.availUntil > 0 %}
+          <p>{{roomNum.availUntil}}</p>
+        {% else %}
+          <p>{{roomNum.availIn}}</p>
+        {% endif %}
       {% endfor %}
     {% endfor %}
     <!--

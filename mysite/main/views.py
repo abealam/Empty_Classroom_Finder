@@ -14,10 +14,16 @@ class Room:
         self.availIn = availIn
 
     def __str__(self):
+        h1, m1 = self.availIn // 60, self.availIn % 60
+        h2, m2 = self.availUntil // 60, self.availUntil % 60
         if self.availIn > 0:
-            return "Room " + self.roomNum + " available in: " + str(self.availIn) 
+            tmp = convertTime(h1, m1)
+            s = tmp[0:2] + ":" + tmp[2:]
+            return "Room " + self.roomNum + " available in: " + s
         else:
-            return "Room " + self.roomNum + " available until: " + str(self.availUntil)
+            tmp = convertTime(h2, m2)
+            s = tmp[0:2] + ':' + tmp[2:]
+            return "Room " + self.roomNum + " available until: " + s
 
 
 def convertTime(h, m):
