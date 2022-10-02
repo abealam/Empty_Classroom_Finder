@@ -14,10 +14,7 @@ for checkbox in checkboxes:
 
 button = driver.find_elements(By.TAG_NAME, "button")
 
-# for b in button:
-#     if b.text == "More Filters":
-#         b.click()
-#         time.sleep(2)
+# if needed, add main campus filter to lessen load
 
 for b in button:
     if b.text == "Search":
@@ -72,7 +69,6 @@ for sections in allClasses:
 
         if index % 9 == 0 and index > 2:
             bigList.append("new entry")
-print("big list made")
 
 
 # creating "newEntryList" to find places to splice data
@@ -98,8 +94,6 @@ for i in range(len(bigList)):
             b = []
     else:
         b.append(bigList[i])
-
-print("WEB & weird classes removed")
 
 
 def militaryTime(str):
@@ -152,12 +146,10 @@ for line in a:
                 endTimeInt += 1200
 
             line[x] = str(endTimeInt)
-    print(line)
 
 
 try:
     with open('mysite/main/static/test.txt', 'w') as file:
-        print("Open worked==============")
         for line in a:
             for x in line:
                 file.write(f'{x}, ')
