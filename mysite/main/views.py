@@ -25,7 +25,6 @@ class Room:
             s = tmp[0:2] + ':' + tmp[2:]
             return "Room " + self.roomNum + " available until: " + s
 
-
 def convertTime(h, m):
     print("ConvertTime executed")
     hour, minute = "",""
