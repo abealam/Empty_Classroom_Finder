@@ -59,7 +59,7 @@ def index(response):
         tmp = buildingName.split()
         allBuildings.append("".join(tmp))
 
-    todayDay = datetime.datetime.today().weekday() - 2
+    todayDay = datetime.datetime.today().weekday() - 4
     todayHour = datetime.datetime.today().hour
     todayMin = datetime.datetime.today().minute
     hourFormat = convertTime(todayHour, todayMin)
