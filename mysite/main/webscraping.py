@@ -22,9 +22,9 @@ for b in button:
 
 time.sleep(3)
 
-# scrolling (needs to be tested)
+# scrolling
 count = 0
-while count != 200:
+while count != 400:
     driver.find_element(by=By.TAG_NAME, value="body").send_keys(Keys.PAGE_DOWN)
     count += 1
     if count % 11 == 0:
@@ -133,7 +133,7 @@ for line in a:
             pmCheck = startTime[-2] + startTime[-1]
             startTimeInt = militaryTime(startTime)
 
-            if pmCheck == "pm" and startTimeInt > 100:
+            if pmCheck == "pm" and startTimeInt >= 100 and startTimeInt < 1200:
                 startTimeInt += 1200
 
             line[x] = str(startTimeInt)
@@ -142,7 +142,7 @@ for line in a:
             pmCheck = line[x][-2] + line[x][-1]
             endTimeInt = militaryTime(line[x])
 
-            if pmCheck == "pm" and endTimeInt > 100:
+            if pmCheck == "pm" and endTimeInt >= 100 and endTimeInt < 1200:
                 endTimeInt += 1200
 
             line[x] = str(endTimeInt)
@@ -157,44 +157,6 @@ try:
 except FileNotFoundError:
     print("The file was not created.")
 
-
-# output below
-# ['3, 5', '1300', '1415', 'Fine Arts 015']
-# ['2, 4', '1430', '1545', 'Fine Arts 303']
-# ['2, 4', '1300', '1415', 'Fine Arts 001']
-# ['3, 5', '1000', '1115', 'Information Technology 456']
-# ['3, 5', '1000', '1115', 'Janet & Walter Sondheim 203']
-# ['3, 5', '1300', '1415', 'Fine Arts 006']
-# ['3', '1630', '1900', 'Fine Arts 015']
-# ['2, 4', '1430', '1545', 'Sherman Hall 151']
-# ['3, 5', '1700', '1815', 'Fine Arts 018']
-# ['2, 4', '1500', '1615', 'Fine Arts 559']
-# ['5', '1600', '1830', 'Fine Arts 424']
-# ['2, 4', '1430', '1545', 'Fine Arts 427']
-# ['2, 4', '1600', '1715', 'Fine Arts 427']
-# ['2, 4', '1300', '1415', 'Fine Arts 306']
-# ['4', '1630', '1900', 'Math & Psychology 106']
-# ['3, 5', '1300', '1415', 'Physics 201']
-# ['4', '1630', '1900', 'Fine Arts 001']
-# ['3, 5', '1000', '1115', 'Math & Psychology 101']
-# ['2, 4', '1000', '1115', 'Performing Arts & Humani 107']
-# ['2, 4', '1000', '1115', 'Interdisciplinary Life S 237']
-# ['2, 4', '1130', '2445', 'Interdisciplinary Life S 237']
-# ['3, 5', '1000', '1115', 'Performing Arts & Humani 108']
-# ['3, 5', '1300', '1415', 'Performing Arts & Humani 108']
-# ['3, 5', '1130', '2445', 'Fine Arts 559']
-# ['3', '1630', '1900', 'Performing Arts & Humani 107']
-# ['4', '1300', '1530', 'Shady Grove Building III 3219']
-# ['2, 4', '1000', '1115', 'Performing Arts & Humani 108']
-# ['3, 5', '1300', '1415', 'Janet & Walter Sondheim 101']
-# ['2', '1430', '1700', 'Fine Arts 558']
-# ['2', '1430', '1700', 'Fine Arts 558']
-# ['3, 5', '1430', '1545', 'Information Technology 231']
-# ['4', '1430', '1545', 'Sherman Hall 145']
-# ['3, 5', '1430', '1545', 'Information Technology 231']
-# ['5', '1600', '1715', 'Engineering 027']
-# ['4', '1600', '1715', 'Physics 101']
-# ['3, 5', '1300', '1415', 'Biological Sciences 120']
-# ['3, 5', '1130', '2445', 'Fine Arts 011']
+    
 
 driver.quit()

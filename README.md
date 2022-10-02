@@ -27,22 +27,17 @@ Through terminal (or VSCode’s terminal), move into the workspace folder. From 
 ```
 py –version 
 ```
-2. Install and set up a virtualenv (not necessary): 
+
+2. Install the extensions/frameworks/etc
 ```
-py –m pip install virtualenv 
-py –m venv venv 
-. venv\scripts\activate
+py -m pip install Django
+py -m pip install selenium
+py -m pip install webdriver-manager
+py -m pip install twilio
+py -m pip install mysql-connector-python
 ```
 
-3. Install the extensions/frameworks/etc
-```
-py -mpip install Django
-py -mpip install selenium
-py -mpip install webdriver-manager
-py -mpip install twilio
-```
-
-4. Once you've installed everything, you are ready to run the page. Write this in the command line to start up the webapp:
+3. Once you've installed everything, you are ready to run the page. Write this in the command line to start up the webapp:
 
 ```
 cd mysite
@@ -50,12 +45,8 @@ py ./manage.py runserver
 ```
 Once that runs successfully, click on the http link provided in the terminal while holding command + shift.
 
-5. If you want to stop the webpage server, push <b>CONTROL-C</b>:
+4. If you want to stop the webpage server, push <b>CONTROL-C</b>:
 
-6.  If you're running your virtual environment, deactivate the virtual environment by typing:
-```
-deactivate
-```
 
 **Mac:**
 
@@ -69,24 +60,17 @@ python --version
 If it lists out a python version less than 3.6+, then check out this page and follow the steps:
     https://stackoverflow.com/questions/1687357/updating-python-on-mac
 
-
-2. Instal and activate virtualenv to check if you have correctly downloaded it (not necessary):
-```
-python3 -m pip install virtualenv
-python3 -m venv <name of environment>
-source <name of environment>/bin/activate
-```
-
-3. Once you've entered your virtualenv, do the following in the command line to install the extensions/frameworks/etc:
+2. Once you've entered your virtualenv, do the following in the command line to install the extensions/frameworks/etc:
 
 ```
 python3 -m pip install Django
 python3 -m pip install selenium
 python3 -m pip install webdriver-manager
 python3 -m pip install twilio
+python3 -m pip install mysql-connector-python
 ```
 
-4. Once you've installed everything, you are ready to run the page. Write this in the command line to start up the webapp:
+3. Once you've installed everything, you are ready to run the page. Write this in the command line to start up the webapp:
 
 ```
 cd mysite
@@ -94,9 +78,4 @@ python3 ./manage.py runserver
 ```
 Once that runs successfully, click on the http link provided in the terminal while holding command + shift.
 
-5. If you want to stop the webpage server, push <b>CONTROL-C</b>:
-
-6.  If you're running your virtual environment, deactivate the virtual environment by typing:
-```
-deactivate
-```
+4. If you want to stop the webpage server, push <b>CONTROL-C</b>:

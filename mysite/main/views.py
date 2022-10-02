@@ -26,7 +26,6 @@ class Room:
             return "Room " + self.roomNum + " available for: " + s + "hr"
 
 def convertTime(h, m):
-    print("ConvertTime executed")
     hour, minute = "",""
     if h < 10:
         hour = '0' + str(h)
@@ -74,7 +73,6 @@ def index(response):
 
     for roomID, buildingID, roomNum, d, startTime, endTime in cursor.fetchall():
         buildingName = allBuildings[buildingID-1]
-        print("ROOMID Works")
         if roomNum not in allRooms:
             allRooms[roomNum] = [] 
         #Assuming all start,end are ordered sets
@@ -109,12 +107,10 @@ def index(response):
 
         curRoom = Room(roomNum, availUntil, availIn)
         #roomsObj.append(curRoom)
-        print(curRoom)
         buildingName = roomsToBuilding[roomNum]
         extraContext[buildingName].append(curRoom)
 
     #render()
-    print(extraContext)
 
 
     return render(response, "base.html", {'extraContext':extraContext} )
