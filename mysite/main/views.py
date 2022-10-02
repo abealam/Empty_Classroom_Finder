@@ -19,11 +19,11 @@ class Room:
         if self.availIn > 0:
             tmp = convertTime(h1, m1)
             s = tmp[0:2] + ":" + tmp[2:]
-            return "Room " + self.roomNum + " available in: " + s
+            return "Room " + self.roomNum + " available in: " + s + " hr"
         else:
             tmp = convertTime(h2, m2)
             s = tmp[0:2] + ':' + tmp[2:]
-            return "Room " + self.roomNum + " available until: " + s
+            return "Room " + self.roomNum + " available until: " + s + " hr"
 
 def convertTime(h, m):
     print("ConvertTime executed")
