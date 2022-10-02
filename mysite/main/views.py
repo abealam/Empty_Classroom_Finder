@@ -15,12 +15,13 @@ class Room:
 
     def __str__(self):
         if self.availIn > 0:
-            return "Room available in: " + self.availIn 
+            return "Room " + self.roomNum + " available in: " + str(self.availIn) 
         else:
-            return "Room available until: " + self.availUntil
+            return "Room " + self.roomNum + " available until: " + str(self.availUntil)
 
 
 def convertTime(h, m):
+    print("ConvertTime executed")
     hour, minute = "",""
     if h < 10:
         hour = '0' + str(h)
@@ -39,32 +40,36 @@ def index(response):
     user = "Q03Tg9475z",
     password = "IjP1ddd6bm"
     )
-    cursor = db.cursor()
+    cursor = db.cursor(buffered=True)
+
 
     query1 = "SELECT * FROM testBuildings"
     cursor.execute(query1)
-   # db.commit()
+
+    #db.commit()
 
     allBuildings = []
     for buildingID, buildingName in cursor.fetchall():
-        allBuildings.append(buildingName)
+        tmp = buildingName.split()
+        allBuildings.append("".join(tmp))
 
-    todayDay = datetime.datetime.today().weekday() + 2
+    todayDay = datetime.datetime.today().weekday() - 2
     todayHour = datetime.datetime.today().hour
     todayMin = datetime.datetime.today().minute
     hourFormat = convertTime(todayHour, todayMin)
 
     query2 = "SELECT * FROM testRooms WHERE day = %s ORDER BY start"
     cursor.execute(query2, (todayDay,))
-    #db.commit()
+   #db.commit()
 
     extraContext = {}
     allRooms = {}
     roomsToBuilding = defaultdict(str)
 
+
     for roomID, buildingID, roomNum, d, startTime, endTime in cursor.fetchall():
         buildingName = allBuildings[buildingID-1]
-        
+        print("ROOMID Works")
         if roomNum not in allRooms:
             allRooms[roomNum] = [] 
         #Assuming all start,end are ordered sets
@@ -83,22 +88,26 @@ def index(response):
         indx = bisect.bisect_left(allRooms[roomNum], curHour)
         availIn, availUntil = -1, -1
         if indx & 1:
-            availIn = allRooms[roomNum][indx+1] - curHour
+            availIn = allRooms[roomNum][indx] - curHour
             
         else:
             #Assume classrooms are available until 10pm only
             if indx == len(allRooms[roomNum]):
                 availUntil = 2200 - curHour
             else:
-                availUntil = allRooms[roomNum][indx+1] - curHour
+                availUntil = allRooms[roomNum][indx] - curHour
 
         curRoom = Room(roomNum, availUntil, availIn)
         #roomsObj.append(curRoom)
+        print(curRoom)
         buildingName = roomsToBuilding[roomNum]
         extraContext[buildingName].append(curRoom)
 
     #render()
-    return render(response, "base.html", extraContext)
+    print(extraContext)
+
+
+    return render(response, "base.html", {'extraContext':extraContext} )
 
 def v1(response):
     return render(response, "home.html", {})

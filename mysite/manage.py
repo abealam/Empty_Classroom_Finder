@@ -5,6 +5,12 @@ import sys
 
 
 def main():
+ 
+    #Check if webscraping txt file exist in folder, if:
+    #   in static folder, skip webscraping
+    #   if not in static folder, do webscraping
+    #   this should only happen once per seemster 
+
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
     try:

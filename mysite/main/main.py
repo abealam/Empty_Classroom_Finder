@@ -1,3 +1,4 @@
+from datetime import datetime
 import os
 from twilio.rest import Client
 
@@ -9,6 +10,10 @@ client = Client(account_sid, auth_token)
 client.messages.create(
     to="+14432394656",
     from_="+19292543961",
+    #If time allows, set up more refined scheduled reminder here:
+    #
+    #send_at=datetime(2022, 10, 2, 10, 36, 00),
+    #schedule_type='fixed',
     body="UMBC Room availability: This is a reminder that the room is available."
 
 )

@@ -5,15 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <title>HackUMBC: Room Availability</title>
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/navbar-fixed/">
     <link href="../static/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="static/dist/js/bootstrap.bundle.min.js"></script>   
+
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="static/jquery.imagemapster.js?v1.2.10"></script>
+
+
+    <!--<script type="text/javascript" src="static/jquery.imagemapster.min.js"></script>-->
+    <script type="text/javascript" src="static/jquery.imagemapster.js"></script>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/navbar-fixed/">
 
     <!-- Custom styles for this template -->
     <link href="static/stylesheet.css" rel="stylesheet">
   </head>
   <body>
     <!-- NAVBAR -->   
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="padding-top:1.5rem;padding-bottom:1.5rem;">
       <div class="container">
       
         <a class="d-flex" style="max-width:10rem; min-wdith:2rem; max-height: 3rem; margin-right:1rem;" href="#"><img class="img-fluid" alt="Responsive image" src="static/UMBC-primary-logo-CMYK-on-black.png"</a>
@@ -39,9 +48,15 @@
       
       </div>
     </nav>
-    <main class="container">
-
+    <main class="container" style="padding-top:2rem" >
+      <!-- TEXT (DATE AND UPDATE TIME)-->
+      <h1><b>UMBC: Room Availability</b></h1>
+      <!-- DATE (change based on current date)-->
+      <h2 id ="date_output"></h2>
+      <i><p id="output"></p></i>
+      <!-- last update text -->
       <!-- FILTER CONTAINER -->
+      <!--
     <div class="container">
       <div class="d-flex flex-wrap justify-content-between align-items-left" style="margin-bottom: 2rem;">
         <form class="d-flex" role="search">
@@ -50,14 +65,28 @@
         </form>
       </div>
     </div>
+    -->
+    {{extraContext}}
+    {% for building,value in extraContext.items %}
+      <p>{{building}}</p>
+      {% for roomNum in value %}
+        <p>{{roomNum}}</p>
+      {% endfor %}
+    {% endfor %}
+    <!--
+    {% for building in BUILDING %}
+    <table class="table">
+      {% for room in building %}
+        <tr class="table_row">
+          {% for c in room %}
+            <td class="table_cell">{{ c }}</td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </table>
+    {% endfor %}
+-->
 
-    <!-- TEXT (DATE AND UPDATE TIME)-->
-    <div class="container" style="margin-bottom:2rem;">
-      <!-- DATE (change based on current date)-->
-      <h1 id ="date_output"></h1>
-      <p id="output"></p>
-      <!-- last update text -->
-    </div>
 
       <!-- ACCORDION / DROPDOWN -->
       <div class="accordion" id="accordionPanelsStayOpenExample" style="margin-bottom:2rem;">
@@ -69,7 +98,9 @@
           </h2>
           <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
             <div class="accordion-body">
-              <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+              <div class="table-responsive-md" id="table">
+
+
             </div>
           </div>
         </div>
@@ -81,8 +112,16 @@
           </h2>
           <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
             <div class="accordion-body">
-              <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-            </div>
+              <table class="table">
+                {% for room in ISLB %}
+                  <tr class="table_row">
+                    {% for content in room %}
+                      <td class="table_cell">{{content}}</td>
+                    {% endfor %}
+                  </tr>
+                {% endfor %}
+              </table> 
+              </div>
           </div>
         </div>
         <div class="accordion-item">
@@ -93,20 +132,62 @@
           </h2>
           <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
             <div class="accordion-body">
-              <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-            </div>
+              <table class="table">
+                {% for room in ISLB %}
+                  <tr class="table_row">
+                    {% for content in room %}
+                      <td class="table_cell">{{ content }}</td>
+                    {% endfor %}
+                  </tr>
+                {% endfor %}
+              </table> 
+              </div>
           </div>
         </div>
       </div>
-
       <!--MAP-->
           <!-- TEXT (DATE AND UPDATE TIME)-->
-      <div class="container" style="margin-bottom:2rem;">
-        <h3>UMBC Map</h3>
+      <div class="container" id="selections" style="margin-bottom:2rem;">
+        <h3 style="margin-top: 4rem;">UMBC Map</h3>
       </div>
       <div class="map-container">
+        <!-- Image Map Generated by http://www.image-map.net/ -->
+          <img id="vegetables" class="alignnone size-full wp-image-66" alt="Responsive image" src="static/UMBC-campus-map.png" usemap="#image-map">
+
+          <map id="veg_map" name="image-map">
+              <area target="" alt="ITE_BUILDING" name="ITE_BUILDING" data-name="ITE_BUILDING,all" title="ITE_BUILDING" href="" coords="435,836,531,947" shape="rect" style="background-color:blue;">
+              <area target="" alt="ENGINEER_BUILDING" name="ENGINEER_BUILDING" data-name="ENGINEER_BUILDING,all" title="ENGINEER_BUILDING" href="" coords="435,705,526,805" shape="rect">
+              <area target="" alt="FINE_ART_BUILDING" name="FINE_ART_BUILDING" data-name="FINE_ART_BUILDING,all" title="FINE_ART_BUILDING" href="" coords="432,572,531,682" shape="rect">
+              <area target="" alt="MEYERHOFF_BUILDING" name="MEYERHOFF_BUILDING" data-name="MEYERHOFF_BUILDING,all" title="MEYERHOFF_BUILDING" href="" coords="561,572,659,685" shape="rect">
+              <area target="" alt="UNIVERSITY_CENTER" name="UNIVERSITY_CENTER" title="UNIVERSITY_CENTER" href="" coords="558,699,654,809" shape="rect">
+              <area target="" alt="SHERMAN_HALL" name="SHERMAN_HALL" title="SHERMAN_HALL" href="" coords="561,829,661,931" shape="rect">
+              <area target="" alt="SONDHEIM_BUILDING" name="SONDHEIM_BUILDING" title="SONDHEIM_BUILDING" href="" coords="686,829,727,927" shape="rect">
+              <area target="" alt="MATH_PSYCHOLOGY_BUILDING" name="MATH_PSYCHOLOGY_BUILDING" title="MATH_PSYCHOLOGY_BUILDING" href="" coords="692,701,728,806" shape="rect">
+              <area target="" alt="BIOLOGICAL_BUILDING" name="BIOLOGICAL_BUILDING" title="BIOLOGICAL_BUILDING" href="" coords="682,497,727,679" shape="rect">
+              <area target="" alt="LECTURE_HALL_1"name="LECTURE_HALL_1" title="LECTURE_HALL_1" href="" coords="736,580,780,619" shape="rect">
+              <area target="" alt="PERFORMING_ARTS_BUILDING" name="PERFORMING_ARTS_BUILDING" title="PERFORMING_ARTS_BUILDING" href="" coords="123,606,374,762" shape="rect">
+              <area target="" alt="ADMIN_BUILDING" name="ADMIN_BUILDING" title="ADMIN_BUILDING" href="" coords="593,956,676,1015" shape="rect">
+              <area target="" alt="ISLB_BUILDING" name="ISLB_BUILDING" title="ISLB_BUILDING" href="" coords="876,666,993,734" shape="rect">
+              <area target="" alt="PHYSICS_BUILDING" name="PHYSICS_BUILDING" title="PHYSICS_BUILDING" href="" coords="1038,498,1100,598" shape="rect">
+              <area target="" alt="PUBLIC_POLICY_BUILDING" name="PUBLIC_POLICY_BUILDING" title="PUBLIC_POLICY_BUILDING" href="" coords="1029,371,1139,421" shape="rect">
+          </map>
+
+          <div id="beatles-caption" style="clear:both;border: 1px solid black; width: 400px; padding: 6px; display:none;">
+            <div id="beatles-caption-header" style="font-style: italic; font-weight: bold; margin-bottom: 12px;"></div>
+            <div id="beatles-caption-text"></div>
+          </div>
+
+        <!--
         <img class="img-fluid" alt="Responsive image" src="static/2021-UMBC-campus-map.png" href="static/2021-UMBC-campus-map.png">
-      </div>
+        <map>
+         
+          <area shape="rect" coords="" href="https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/" alt="Building-1"
+
+        </map>
+      -->
+        <!-- <img class="img-fluid" alt="Responsive image" src="static/2021-UMBC-campus-map.png" href="static/2021-UMBC-campus-map.png">
+        -->
+        </div>
 
     <!-- FOOTER -->
       <div class="container">
@@ -170,6 +251,193 @@
           document.getElementById('output').innerHTML = time;
           document.getElementById('date_output').innerHTML = day_time;
      </script>
-    <script src="static/dist/js/bootstrap.bundle.min.js"></script>   
+
+     <!-- Map JS/JQuery-->
+
+    <script>
+            var inArea,
+            map = $('#vegetables'),
+            captions = {
+              ITE_BUILDING: ["ITE_BUILDING"],
+              ENGINEER_BUILDING: ["ENGINEER_BUILDING"],
+              FINE_ART_BUILDING: ["FINE_ART_BUILDING"],
+              MEYERHOFF_BUILDING: ["MEYERHOFF_BUILDING"]
+            },
+            single_opts = {
+                fillColor: '000000',
+                fillOpacity: .4,
+                stroke: true,
+                strokeColor: 'ff0000',
+                strokeWidth: 2
+            },
+            all_opts = {
+                fillColor: '000000',
+                fillOpacity: 0.6,
+                stroke: true,
+                strokeWidth: 2,
+                strokeColor: '000000',
+            },
+            initial_opts = {
+                mapKey: 'data-name',
+                singleSelect: true,
+                onMouseover: function (data) {
+                    inArea = true;
+                    $('#beatles-caption-header').text(captions[data.key][0]);
+                    $('#beatles-caption-text').text(captions[data.key][1]);
+                    $('#beatles-caption').show();
+                },
+                onMouseout: function (data) {
+                    inArea = false;
+                    $('#beatles-caption').hide();
+                }
+            };
+        opts = $.extend({}, all_opts, initial_opts, single_opts);
+
+
+        // Bind to the image 'mouseover' and 'mouseout' events to activate or deactivate ALL the areas, like the
+        // original demo. Check whether an area has been activated with "inArea" - IE<9 fires "onmouseover" 
+        // again for the image when entering an area, so all areas would stay highlighted when entering
+        // a specific area in those browsers otherwise. It makes no difference for other browsers.
+
+        map.mapster('unbind')
+            .mapster(opts)
+            .bind('mouseover', function () {
+                if (!inArea) {
+                    map.mapster('set_options', all_opts)
+                       .mapster('set', true, 'all')
+                       .mapster('set_options', single_opts);
+                }
+            }).bind('mouseout', function () {
+                if (!inArea) {
+                    map.mapster('set', false, 'all');
+                }
+            });
+
+      // a cross ref
+      </script>
+<!---
+     <script>
+          
+      // a cross reference of area names to text to be shown for each area
+      /*
+      var xref = {
+            FINE_ART_BUILDING: "<b>Carrots</b> are delicious and may turn your skin orange!",
+            MEYERHOFF_BUILDING: "<b>Asparagus</b> is one of the first vegetables of the spring. " 
+                +"Being a dark green, it's great for you, and has interesting side effects.",
+            UNIVERSITY_CENTER: "<b>Squash</b> is a winter vegetable, and not eaten raw too much. Is that really squash?",
+            ITE_BUILDING: "<b>Red peppers</b> are actually the same as green peppers, they've just been left on "
+                +"the vine longer. Delicious when fire-roasted.",
+                SHERMAN_HALL: "Similar to red peppers, <b>yellow peppers</b> are sometimes sweeter.",
+            ENGINEER_BUILDING: "<b>ENGINEER_BUILDING</b> is a fascinating vegetable. Being mostly water, it actually takes your body "
+                +"more calories to process it than it provides.",
+                BIOLOGICAL_BUILDING: "<b>Cucumbers</b> are cool.",
+            SONDHEIM_BUILDING: "<b>Broccoli</b> is like a forest of goodness in your mouth. And very good for you. "
+                +"Eat lots of broccoli!",
+            MATH_PSYCHOLOGY_BUILDING: "Everything here is good for you but this one. <b>Don't be a dip!</b>",
+            BIOLOGICAL_BUILDING: "Everything here is good for you but this one. <b>Don't be a dip!</b>",
+            LECTURE_HALL_1: "Everything here is good for you but this one. <b>Don't be a dip!</b>",
+            PERFORMING_ARTS_BUILDING: "Everything here is good for you but this one. <b>Don't be a dip!</b>",
+            ADMIN_BUILDING: "Everything here is good for you but this one. <b>Don't be a dip!</b>",
+            ISLB_BUILDING: "Everything here is good for you but this one. <b>Don't be a dip!</b>",
+            PHYSICS_BUILDING: "Everything here is good for you but this one. <b>Don't be a dip!</b>",
+            PUBLIC_POLICY_BUILDING: "Everything here is good for you but this one. <b>Don't be a dip!</b>"
+          };
+          */
+        
+        var defaultDipTooltip = 'I know you want the dip. But it\'s loaded with saturated fat, just skip it '
+            +'and enjoy as many delicious, crisp vegetables as you can eat.';
+        
+        var image = $('#vegetables');
+
+        //hover over buildings
+            
+        //select building 
+
+        image.mapster(
+        {
+            fillOpacity: 0.4,
+            fillColor: "d42e16",
+            stroke: true,
+            strokeColor: "3320FF",
+            strokeOpacity: 0.8,
+            strokeWidth: 4,
+            singleSelect: true,
+            mapKey: 'name',
+            listKey: 'name',
+            onClick: function (e) {
+                var newToolTip = defaultDipTooltip;
+                
+                // update text depending on area selected
+                //$('#selections').html(xref[e.key]);
+                
+                // if Asparagus selected, change the tooltip
+                if (e.key === 'MEYERHOFF_BUILDING') {
+                    newToolTip = "OK. I know I have come down on the dip before, but let's be real. "
+                        +"Raw asparagus without any of that delicious ranch and onion dressing "
+                        +"slathered all over it is not so good.";
+                }
+                image.mapster('set_options', { 
+                    areas: [{
+                        key: "MATH_PSYCHOLOGY_BUILDING",
+                        toolTip: newToolTip
+                        }]
+                    });
+            },
+            showToolTip: true,
+            toolTipClose: ["tooltip-click", "area-click"],
+            areas: [
+                {
+                    key: "ITE_BUILDING",
+                    fillColor: "ffffff"
+                },
+                {
+                    key: "SHERMAN_HALL",
+                    fillColor: "000000"
+                },
+                {
+                    key: "FINE_ART_BUILDING",
+                    fillColor: "000000"
+                },
+                {
+                    key: "MATH_PSYCHOLOGY_BUILDING",
+                    toolTip: defaultDipTooltip
+                },
+                {
+                    key: "MEYERHOFF_BUILDING",
+                    strokeColor: "FFFFFF"
+                },
+                {
+                    key: "BIOLOGICAL_BUILDING",
+                    fillColor: "000000"
+                },
+                {
+                    key: "LECTURE_HALL_1",
+                    fillColor: "000000"
+                },
+                {
+                    key: "PERFORMING_ARTS_BUILDING",
+                    fillColor: "000000"
+                },
+                {
+                    key: "ADMIN_BUILDING",
+                    fillColor: "000000"
+                },
+                {
+                    key: "ISLB_BUILDING",
+                    fillColor: "000000"
+                },
+                {
+                    key: "PHYSICS_BUILDING",
+                    fillColor: "000000"
+                },
+                {
+                    key: "PUBLIC_POLICY_BUILDING",
+                    fillColor: "000000"
+                }
+
+                ]
+        });
+     </script>
+    -->
   </body>
 </html>

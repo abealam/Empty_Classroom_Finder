@@ -1,9 +1,18 @@
-{% extends 'main/base.html' %}
+{% extends 'base.html' %}
 
-{% block title %}
-Home Page
-{% endblock %}
 
 {% block content %}
-<h1>Home Page</h1>
+{% for li in list1 %}
+    {{li}}
+{% endfor %}
+
+{% for li in list2 %}
+    {{li}}
+{% endfor %}
 {% endblock %}
+
+
+{% block content_2 %}
+<h1>Blockk 2</h1>
+{% endblock %}
+
