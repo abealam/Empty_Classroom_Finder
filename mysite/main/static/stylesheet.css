@@ -105,3 +105,12 @@ body {
   display: none;
   overflow: hidden;
 }
+
+#acc_text{
+
+}
+
+.status_btn_green{
+  background-color: green;
+  display:inline";
+}

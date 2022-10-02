@@ -12,19 +12,31 @@ class Room:
         self.roomNum = roomNum
         self.availUntil = availUntil
         self.availIn = availIn
+        # tmp = ""
+        
+        # # if self.availIn > 0:
+        # #     tmp = "Room " + self.roomNum + " available in: " + str(self.availIn) 
+
+        # # else:
+        # #     tmp = "Room " + self.roomNum + " available until: " + str(self.availUntil)
+       
+        self.status = {
+
+            'msg' : "until"
+             
+         }
 
     def __str__(self):
-        h1, m1 = self.availIn // 60, self.availIn % 60
-        h2, m2 = self.availUntil // 60, self.availUntil % 60
         if self.availIn > 0:
-            tmp = convertTime(h1, m1)
-            s = tmp[0:2] + ":" + tmp[2:]
-            return "Room " + self.roomNum + " available in: " + s
+            return "Room " + self.roomNum + " available in: " + str(self.availIn) 
         else:
-            tmp = convertTime(h2, m2)
-            s = tmp[0:2] + ':' + tmp[2:]
-            return "Room " + self.roomNum + " available until: " + s
+            return "Room " + self.roomNum + " available until: " + str(self.availUntil)
 
+    def getStr(self):
+        if self.availIn > 0:
+            return "Room " + self.roomNum + " available in: " + str(self.availIn) 
+        else:
+            return "Room " + self.roomNum + " available for: " + str(self.availUntil)
 
 def convertTime(h, m):
     print("ConvertTime executed")

@@ -56,30 +56,17 @@
       <i><p id="output"></p></i>
       <!-- last update text -->
       <!-- FILTER CONTAINER -->
-      <!--
-    <div class="container">
-      <div class="d-flex flex-wrap justify-content-between align-items-left" style="margin-bottom: 2rem;">
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
-    </div>
-    -->
-    <!-- {{extraContext}} -->
-
-
     {% for building,value in extraContext.items %}
-      <p>{{building}}</p>
-      {% for roomNum in value %}
-        {% if roomNum.availUntil > 0 %}
-          <p>{{roomNum.availUntil}}</p>
-        {% else %}
-          <p>{{roomNum.availIn}}</p>
-        {% endif %}
-      {% endfor %}
-    </div>
-    </div>
+      <button id="acc_text" class="accordion">{{building}}</button>
+      <div class="panel">
+        {% for roomNum in value %}
+          {% if roomNum.availUntil > 0 %}
+            <button class="status_btn_green"></button> <p style="display:flex">{{roomNum}}</p>
+          {% else %}
+            <button style="background-color: red;display:inline"></button> <p style="display:flex">{{roomNum}}</p>
+          {% endif %}
+        {% endfor %}
+      </div>
     {% endfor %}
     <!--
     {% for building in BUILDING %}
@@ -125,17 +112,6 @@
             <div id="beatles-caption-header" style="font-style: italic; font-weight: bold; margin-bottom: 12px;"></div>
             <div id="beatles-caption-text"></div>
           </div>
-
-        <!--
-        <img class="img-fluid" alt="Responsive image" src="static/2021-UMBC-campus-map.png" href="static/2021-UMBC-campus-map.png">
-        <map>
-         
-          <area shape="rect" coords="" href="https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/" alt="Building-1"
-
-        </map>
-      -->
-        <!-- <img class="img-fluid" alt="Responsive image" src="static/2021-UMBC-campus-map.png" href="static/2021-UMBC-campus-map.png">
-        -->
         </div>
 
     <!-- FOOTER -->
@@ -161,6 +137,7 @@
           //var date_numberformat = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
           var month = today.getMonth();
           var day = today.getDay();
+          var day_num = today.getDate();
           var daylist = ["Sunday","Monday","Tuesday","Wednesday ","Thursday","Friday","Saturday"];
           var monthlist = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
           console.log("Today is : " + daylist[day] + ".");
@@ -195,14 +172,13 @@
           prepand=' AM';
           } 
           } 
-          const day_time = daylist[day] + ". " + monthlist[month] + " " + day + ", " + today.getFullYear();
+          const day_time = daylist[day] + ". " + monthlist[month] + " " + day_num + ", " + today.getFullYear();
           const time = "Current Time : "+hour  + ":" + minute + " " + prepand;
           document.getElementById('output').innerHTML = time;
           document.getElementById('date_output').innerHTML = day_time;
      </script>
 
      <!-- Map JS/JQuery-->
-
     <script>
             var inArea,
             map = $('#vegetables'),
